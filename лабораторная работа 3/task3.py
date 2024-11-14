@@ -1,21 +1,22 @@
 # TODO  Напишите функцию count_letters
-def count_letters(text):
-    number = {}
-    text_lower = text.lower()
-    for letter in text_lower:
-        if letter.isalpha():
+def count_letters(text):  # объявили функцию
+    number = {}  # создали пустой словарь
+    text_lower = text.lower()  # понижаем регистр текста
+    for letter in text_lower:  # проходимся по каждому символу
+        if letter.isalpha():  # если символ является буквой, то добавляем его в словарь и прибавляем единицу к счетчику
             if letter in number:
                 number[letter] += 1
             else:
                 number[letter] = 1
-    return number
+    return number  # возвращаем словарь
 
 # TODO Напишите функцию calculate_frequency
-def calculate_frequency(number, letters_summary):
-    frequency = {}
-    for letters, count in number.items():
-        frequency[letters] = count / letters_summary
-    return frequency
+def calculate_frequency(number):  # объявили функцию
+    frequency = {}  # создали пустой словарь
+    letters_summary = sum(number.values())
+    for letters, count in number.items():  # проходимся по каждой букве и считаем количество повторений каждой буквы
+        frequency[letters] = count / letters_summary  # считаем частоту для каждой буквы
+    return frequency  # возвращаем словарь с частотой каждой буквы
 
 main_str = """
 У лукоморья дуб зелёный;
@@ -54,7 +55,7 @@ main_str = """
 """
 
 # TODO Распечатайте в столбик букву и её частоту в тексте
-frequency_final = calculate_frequency(count_letters(main_str), sum(count_letters(main_str).values()))
+frequency_final = calculate_frequency(count_letters(main_str))  # вызываем функции для данного текста
 
-for character, frequence in frequency_final.items():
-    print(f"{character}: {frequence:.2f}")
+for character, frequency in frequency_final.items(): # печатаем в столбик
+    print(f"{character}: {frequency:.2f}")
