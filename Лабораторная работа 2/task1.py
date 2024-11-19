@@ -3,9 +3,9 @@ salary = 5000  # Ежемесячная зарплата
 spend = 6000  # Траты за первый месяц
 increase = 0.05  # Ежемесячный рост цен
 months = 1
-while money_capital > 0 and spend < money_capital:
-    money_capital += salary - spend
-    spend = spend * (1 + increase)
-    months += 1
+while money_capital > spend - salary:  # цикл выполняется пока значение подушки превышает разницу между зарплатой и затратами
+    money_capital += salary - spend  # изменяем значение подушки с учётом затрат
+    spend = spend * (1 + increase)  # изменяем величину ежемесячных трат, с учётом роста цен
+    months += 1  # кол-во месяцев увеличивается на 1 с каждым проходом по циклу
 print("Количество месяцев, которое можно протянуть без долгов:", months)
 
